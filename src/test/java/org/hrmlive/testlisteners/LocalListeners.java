@@ -40,7 +40,7 @@ public class LocalListeners implements ITestListener {
 	private static ExtentSparkReporter spark;
 	private static ExtentTest test;
 	private static Properties prop;
-	final File CONF = new File("./src/test/resources/extent-config.xml");
+	final File CONF = new File("./src/test/java/resources/extent-config.xml");
 
 	public static ExtentTest getTest() {
 		return test;
@@ -62,7 +62,7 @@ public class LocalListeners implements ITestListener {
 		prop = new Properties();
 		try {
 			FileInputStream fis = new FileInputStream(
-					new File("C:/Users/kiran/OrangeHrmLive/OrangeHRMLive/src/test/resources/config.properties"));
+					new File("C:/Users/kiran/OrangeHrmLive/OrangeHRMLive/src/test/java/resources/config.properties"));
 			prop.load(fis);
 		} catch (Exception e) {
 			e.printStackTrace();
