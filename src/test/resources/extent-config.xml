@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extentreports>
+  <configuration>
+
+    <theme>DARK</theme>
+  
+    <encoding>UTF-8</encoding>
+    
+    <protocol>HTTPS</protocol>
+    
+    <documentTitle>Orange HRM Live - Report</documentTitle>
+    
+    <reportName>Regression Pack</reportName>
+    
+    <timeStampFormat>dd-MMM-yyyy, HH:mm:ss</timeStampFormat>
+    
+    <thumbnailForBase64>true</thumbnailForBase64>
+   
+    <!-- custom javascript -->
+    <scripts>
+      <![CDATA[
+        $(document).ready(function() {
+          
+        });
+      ]]>
+    </scripts>
+    
+    <!-- custom styles -->
+    <styles>
+      <![CDATA[
+        
+      ]]>
+    </styles>
+  </configuration>
+</extentreports>
