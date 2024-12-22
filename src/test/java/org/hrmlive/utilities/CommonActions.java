@@ -8,7 +8,6 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.Reporter;
 
-import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 
