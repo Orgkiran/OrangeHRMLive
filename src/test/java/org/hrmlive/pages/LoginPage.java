@@ -21,6 +21,20 @@ public class LoginPage {
 
 	@FindBy(xpath = "//button[@type=\"submit\"]")
 	private WebElement loginButton;
+	
+	@FindBy(xpath = "//label[text()='Username']/parent::div/following-sibling::span")
+	private WebElement usernamefieldError;
+	
+	@FindBy(xpath = "//label[text()='Password']/parent::div/following-sibling::span")
+	private WebElement passwordfieldError;
+
+	public WebElement getUsernamefieldError() {
+		return usernamefieldError;
+	}
+
+	public WebElement getPasswordfieldError() {
+		return passwordfieldError;
+	}
 
 	public WebElement getUsernamefield() {
 		return usernamefield;

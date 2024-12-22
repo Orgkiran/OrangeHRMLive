@@ -92,14 +92,12 @@ public class LocalListeners implements ITestListener {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 		extent.attachReporter(spark);
-
 		driver.get(prop.getProperty("url"));
 	}
 
 	public void onTestStart(ITestResult result) {
-		test = extent.createTest(result.getName(), result.getMethod().getDescription());
+		test = extent.createTest(result.getMethod().getMethodName(), result.getMethod().getDescription());
 		Dimension screenSize = driver.manage().window().getSize();
 		((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete");
 		test.log(Status.INFO, "Browser: " + prop.getProperty("browser").toUpperCase() + ", and Screen Size: "
@@ -108,6 +106,8 @@ public class LocalListeners implements ITestListener {
 	}
 
 	public void onTestSuccess(ITestResult result) {
+		test.log(Status.PASS, "Test Pass", MediaEntityBuilder
+				.createScreenCaptureFromBase64String(CommonActions.captureScreenshot(driver)).build());
 		Reporter.log("Test Passed: " + result.getName());
 		System.out.println("Test Passed: " + result.getName());
 	}
@@ -145,12 +145,10 @@ public class LocalListeners implements ITestListener {
 	public void onFinish(ITestContext context) {
 		extent.flush();
 		driver.quit();
-
 	}
 
 	public static String getCurrentDate() {
 		LocalDate date = LocalDate.now();
-
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
 		String currentDate = formatter.format(date);
 		return currentDate;
@@ -158,7 +156,6 @@ public class LocalListeners implements ITestListener {
 
 	public static String getCurrentDateWithTime() {
 		ZonedDateTime istTime = ZonedDateTime.now(ZoneId.of("Asia/Kolkata"));
-
 		// Format the time
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy_HH-mm-ss");
 		String formattedTime = istTime.format(formatter);

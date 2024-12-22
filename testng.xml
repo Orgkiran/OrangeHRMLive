@@ -4,6 +4,7 @@
   <test thread-count="5" name="Daily Run">
     <classes>
       <class name="org.hrmlive.tests.TestLogin"/>
+      <class name="org.hrmlive.tests.TestAddUser"/>
     </classes>
   </test> <!-- Daily Run -->
 </suite> <!-- Regression Suite -->

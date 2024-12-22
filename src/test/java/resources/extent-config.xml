@@ -15,6 +15,7 @@
     <timeStampFormat>dd-MMM-yyyy, HH:mm:ss</timeStampFormat>
     
     <thumbnailForBase64>true</thumbnailForBase64>
+    <enableOfflineMode>false</enableOfflineMode>
    
     <!-- custom javascript -->
     <scripts>

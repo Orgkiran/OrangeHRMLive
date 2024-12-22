@@ -29,7 +29,7 @@ public class Helper {
 
 	public static void logout() {
 		HomePage home = new HomePage(LocalListeners.getDriver());
-		CommonActions.clickOnElement(home.getProfileIcon(), "Clicked on Peofile icon");
+		CommonActions.clickOnElement(home.getProfileIcon(), "Clicked on Profile icon");
 		CommonActions.clickOnElement(home.getLogoutButton(), "Clicked on Logout Button");
 
 		LoginPage login = new LoginPage(LocalListeners.getDriver());

@@ -21,6 +21,13 @@ public class HomePage {
 
 	@FindBy(xpath = "//h6[@class=\"oxd-text oxd-text--h6 oxd-topbar-header-breadcrumb-module\"]")
 	private WebElement dashBoardHeader;
+	
+	@FindBy(xpath = "//span[text()='Admin']")
+	private WebElement adminLink;
+
+	public WebElement getAdminLink() {
+		return adminLink;
+	}
 
 	public WebElement getDashBoardHeader() {
 		return dashBoardHeader;
