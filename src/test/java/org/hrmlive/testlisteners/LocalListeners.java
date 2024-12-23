@@ -62,7 +62,7 @@ public class LocalListeners implements ITestListener {
 		prop = new Properties();
 		try {
 			FileInputStream fis = new FileInputStream(
-					new File("C:/Users/kiran/OrangeHrmLive/OrangeHRMLive/src/test/java/resources/config.properties"));
+					new File("./src/test/java/resources/config.properties"));
 			prop.load(fis);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -109,7 +109,6 @@ public class LocalListeners implements ITestListener {
 		test.log(Status.PASS, "Test Pass", MediaEntityBuilder
 				.createScreenCaptureFromBase64String(CommonActions.captureScreenshot(driver)).build());
 		Reporter.log("Test Passed: " + result.getName());
-		System.out.println("Test Passed: " + result.getName());
 	}
 
 	public void onTestFailure(ITestResult result) {
@@ -117,21 +116,18 @@ public class LocalListeners implements ITestListener {
 		test.log(Status.FAIL, "STEP FAILED: \n" + var, MediaEntityBuilder
 				.createScreenCaptureFromBase64String(CommonActions.captureScreenshot(driver)).build());
 		Reporter.log("Test Failed: " + result.getName());
-		System.out.println("Test Failed: " + result.getName());
 		Helper.logout();
 	}
 
 	public void onTestSkipped(ITestResult result) {
 		test.log(Status.SKIP, "Test Skipped at " + getCurrentDateWithTime());
 		Reporter.log("Test Skipped: " + result.getName());
-		System.out.println("Test Skipped: " + result.getName());
 	}
 
 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
 		Throwable throwVar = result.getThrowable();
 		test.log(Status.FAIL, "Test Failed at " + getCurrentDateWithTime() + "\n" + throwVar
 				+ MediaEntityBuilder.createScreenCaptureFromBase64String(captureScreenshot(getDriver())).build());
-		System.out.println("Test Failed: " + result.getName());
 	}
 
 	public void onTestFailedWithTimeout(ITestResult result) {
@@ -139,7 +135,6 @@ public class LocalListeners implements ITestListener {
 		Throwable throwVar = result.getThrowable();
 		test.log(Status.FAIL, "Test Failed at " + getCurrentDateWithTime() + "\n" + throwVar
 				+ MediaEntityBuilder.createScreenCaptureFromBase64String(captureScreenshot(getDriver())).build());
-		System.out.println("Test Failed: " + result.getName());
 	}
 
 	public void onFinish(ITestContext context) {
