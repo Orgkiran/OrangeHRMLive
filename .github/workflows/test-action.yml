@@ -1,0 +1,36 @@
+name: Selenium Tests
+
+on:
+  push:
+    branches: [ "develop" ] 
+  pull_request:
+    branches: [ "develop" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '1.8'
+
+    - name: Install Maven
+      uses: apache/maven-action@v3
+      with:
+        maven-version: '3.9.1'
+
+    - name: Build and run tests
+      run: |
+        mvn clean install -Dmaven.test.failure.ignore=true
+
+    - name: Upload test results (optional)
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results
+        path: target/surefire-reports
