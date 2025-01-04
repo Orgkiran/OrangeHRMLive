@@ -23,7 +23,7 @@ jobs:
           distribution: temurin
           java-version: "17"				
       - name: Install Maven
-        uses: hb0730/maven-action@latest
+        uses: hb0730/maven-action@v1.0.2
         with:
           maven-version: '3.9.1'
       - name: Build and run test
