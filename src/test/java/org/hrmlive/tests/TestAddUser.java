@@ -6,6 +6,7 @@ import org.hrmlive.pages.HomePage;
 import org.hrmlive.testlisteners.LocalListeners;
 import org.hrmlive.utilities.CommonActions;
 import org.hrmlive.utilities.Helper;
+import org.openqa.selenium.Keys;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -38,6 +39,28 @@ public class TestAddUser {
 		CommonActions.verifyElementExists(adduser.getSaveButton(), "Verify Save button present on the screen");
 	
 		Helper.logout();
+	}
+	
+	public static void addNewUser() {
+Helper.login();
+		
+		HomePage home = new HomePage(LocalListeners.getDriver());
+		CommonActions.verifyElementExists(home.getAdminLink(), "Verify Admin link Present on Home page");
+		CommonActions.clickOnElement(home.getAdminLink(), "Click on Admin link");
+		
+		AdminPage admin = new AdminPage(LocalListeners.getDriver());
+		CommonActions.clickOnElement(admin.getAddUserButton(), "Click on Add button");
+		
+		AddUserPage adduser = new AddUserPage(LocalListeners.getDriver());
+		CommonActions.setText(adduser.getEmployeeName(), "a", "Entered the text into employee name textfield");
+		adduser.getEmployeeName().sendKeys(Keys.ENTER);
+		Helper.waitForSeconds(2);
+		adduser.getEmployeeName().sendKeys(Keys.DOWN, Keys.ENTER);
+		
+		CommonActions.clickOnElement(adduser.getUserRoleDropdown(), "Clicked on User role dropdown");
+		CommonActions.clickOnElement(adduser.getAddUserDropdownESS(), "Select ESS from the dropdown");
+		
+		
 	}
 
 }

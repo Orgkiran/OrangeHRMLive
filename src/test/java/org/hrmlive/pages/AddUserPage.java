@@ -19,6 +19,15 @@ public class AddUserPage {
 	@FindBy(xpath = "//label[text()='User Role']//parent::div/following-sibling::div//div[@class=\"oxd-select-text-input\"]")
 	private WebElement userRoleDropdown;
 	
+	@FindBy(xpath = "//*[text()='ESS']")
+	private WebElement addUserDropdownESS;
+	
+	@FindBy(xpath = "//*[text()='Admin']")
+	private WebElement addUserDropdownAdmin;
+	
+	@FindBy(xpath = "//*[text()='Enabled']")
+	private WebElement statusEnabled;
+	
 	@FindBy(xpath = "//input[@placeholder=\"Type for hints...\"]")
 	private WebElement employeeName;
 	
@@ -75,5 +84,18 @@ public class AddUserPage {
 	public WebElement getSaveButton() {
 		return saveButton;
 	}
+
+	public WebElement getAddUserDropdownESS() {
+		return addUserDropdownESS;
+	}
+
+	public WebElement getAddUserDropdownAdmin() {
+		return addUserDropdownAdmin;
+	}
+
+	public WebElement getStatusEnabled() {
+		return statusEnabled;
+	}
+	
 	
 }
