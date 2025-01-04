@@ -21,7 +21,7 @@ jobs:
         java-version: '11'
 
     - name: Install Maven
-      uses: apache/maven-action@v3
+      uses: comchangs/action-maven@master
       with:
         maven-version: '3.9.1'
 
