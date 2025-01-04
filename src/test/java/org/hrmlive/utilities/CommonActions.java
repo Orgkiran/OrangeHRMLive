@@ -16,9 +16,7 @@ public class CommonActions {
 
 	public static void clickOnElement(WebElement ele, String stepmessage) {
 		ele.click();
-
 		Helper.waitForSeconds(1);
-
 		addTOReport(stepmessage);
 	}
 
@@ -28,7 +26,6 @@ public class CommonActions {
 	}
 
 	public static void verifyElementExists(WebElement ele, String message) {
-
 		try {
 			ele.isDisplayed();
 			addTOReport(message);
@@ -39,7 +36,6 @@ public class CommonActions {
 					.build());
 			Reporter.log("Element not found: " + ele.getAccessibleName());
 		}
-
 	}
 
 	//To verify full text equals to actual String
@@ -59,7 +55,7 @@ public class CommonActions {
 			Reporter.log("Expected: \'" +expected+  "\' is not matching with Actual: \'"+actual+"\'");
 		}
 	}
-	
+
 	//To verify partial text is matching Actual String
 	public static void verifyTextContains(WebElement ele, String expected,String stepdescription) {
 		String actual = ele.getText();

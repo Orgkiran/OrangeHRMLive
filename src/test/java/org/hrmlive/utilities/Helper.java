@@ -19,12 +19,15 @@ public class Helper {
 		String password = LocalListeners.getProp().getProperty("password");
 
 		LoginPage loginpage = new LoginPage(LocalListeners.getDriver());
+		
+		if(loginpage.getUsernamefield().isDisplayed()) {
 		CommonActions.setText(loginpage.getUsernamefield(), username, "Entered username successfully");
 		CommonActions.setText(loginpage.getPasswordfield(), password, "Entered Password successfully");
 		CommonActions.clickOnElement(loginpage.getLoginButton(), "Clicked on Login button");
 
 		HomePage home = new HomePage(LocalListeners.getDriver());
 		CommonActions.verifyElementExists(home.getDashBoardHeader(), "Logged in Successfully");
+		}
 	}
 
 	public static void logout() {
