@@ -8,33 +8,27 @@ on:
       - develop
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest
-		
+    runs-on: ubuntu-latest	
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-				
+        uses: actions/checkout@v3			
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
           distribution: temurin
-          java-version: "17"
-					
+          java-version: "17"				
       - name: Set up Java
         uses: actions/setup-java@v3
         with:
           distribution: temurin
-          java-version: "17"
-					
+          java-version: "17"				
       - name: Install Maven
         uses: hb0730/maven-action@latest
         with:
           maven-version: '3.9.1'
-					
       - name: Build and run test
         run: |
           mvn clean
-					
       - name: Upload test results (optional)
         uses: actions/upload-artifact@v3
         with:
