@@ -5,6 +5,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.Reporter;
 
@@ -74,6 +75,40 @@ public class CommonActions {
 					.build());
 			Reporter.log("Expected: \'" +expected+  "\' is not matching with Actual: \'"+actual+"\'");
 		}
+	}
+
+	public static void SelectDropdownValue(WebElement selectDropdown, String value, String message) {
+		try {
+			Select select = new Select(selectDropdown);
+			select.selectByValue(value);
+			LocalListeners.getTest().log(Status.PASS, message,
+					MediaEntityBuilder
+					.createScreenCaptureFromBase64String(captureScreenshot(LocalListeners.getDriver()))
+					.build());
+		} catch(Exception e) {
+			LocalListeners.getTest().log(Status.WARNING, "Element or Dropdown value not found",
+					MediaEntityBuilder
+					.createScreenCaptureFromBase64String(captureScreenshot(LocalListeners.getDriver()))
+					.build());
+		}
+
+	}
+	
+	public static void SelectDropdownByVisibleText(WebElement selectDropdown, String visibleText, String message) {
+		try {
+			Select select = new Select(selectDropdown);
+			select.deselectByVisibleText(visibleText);
+			LocalListeners.getTest().log(Status.PASS, message,
+					MediaEntityBuilder
+					.createScreenCaptureFromBase64String(captureScreenshot(LocalListeners.getDriver()))
+					.build());
+		} catch(Exception e) {
+			LocalListeners.getTest().log(Status.WARNING, "Element or Dropdown Visible text is not found",
+					MediaEntityBuilder
+					.createScreenCaptureFromBase64String(captureScreenshot(LocalListeners.getDriver()))
+					.build());
+		}
+
 	}
 
 	public static void addTOReport(String message) {
