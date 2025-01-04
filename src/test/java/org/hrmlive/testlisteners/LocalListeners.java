@@ -116,7 +116,6 @@ public class LocalListeners implements ITestListener {
 		test.log(Status.FAIL, "STEP FAILED: \n" + var, MediaEntityBuilder
 				.createScreenCaptureFromBase64String(CommonActions.captureScreenshot(driver)).build());
 		Reporter.log("Test Failed: " + result.getName());
-		Helper.logout();
 	}
 
 	public void onTestSkipped(ITestResult result) {
