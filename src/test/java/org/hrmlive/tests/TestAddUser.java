@@ -60,6 +60,9 @@ Helper.login();
 		CommonActions.clickOnElement(adduser.getUserRoleDropdown(), "Clicked on User role dropdown");
 		CommonActions.clickOnElement(adduser.getAddUserDropdownESS(), "Select ESS from the dropdown");
 		
+		CommonActions.clickOnElement(adduser.getStatusDropdown(), "Click on Status dropdown");
+		CommonActions.clickOnElement(adduser.getStatusEnabled(), "Select Enabled from Status dropdown");
+		
 		
 	}
 
