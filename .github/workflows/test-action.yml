@@ -20,10 +20,11 @@ jobs:
         distribution: 'temurin'
         java-version: '11'
 
-    - name: Install Maven
-      uses: comchangs/action-maven@master
-      with:
-        maven-version: '3.9.1'
+    - name: Set up Maven
+  		uses: hb0730/maven-action@latest
+  		with:
+    			maven-version: 3.9.9
+    			url: https://downloads.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz
 
     - name: Build and run tests
       run: |
