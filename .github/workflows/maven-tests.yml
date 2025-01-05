@@ -15,7 +15,11 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: maven
-      - uses: browser-actions/setup-chrome@v1
+      - name: set up chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: '131.0.6778.204'
+          install-chromedriver: true
       - run: chrome --version
       - name: Set up chrome driver
         uses: nanasess/setup-chromedriver@v2
