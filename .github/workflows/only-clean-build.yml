@@ -1,4 +1,4 @@
-name: Selenium Tests
+name: Clean build
 on:
   push:
     branches:
