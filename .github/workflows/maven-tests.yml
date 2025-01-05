@@ -17,7 +17,7 @@ jobs:
           cache: maven
       - uses: browser-actions/setup-edge@v1
         with:
-          edge-version: 'latest'
+          edge-version: '131.0.2903.112'
       - name: Print Edge version
         run: (Get-Item (Get-Command msedge).Source).VersionInfo.ProductVersion
       - name: Build with Maven
