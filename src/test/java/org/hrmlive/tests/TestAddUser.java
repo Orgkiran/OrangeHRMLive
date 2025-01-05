@@ -12,19 +12,19 @@ import org.testng.annotations.Test;
 
 @Listeners(LocalListeners.class)
 public class TestAddUser {
-	
+
 	@Test(description = "Verifying the elements are displayed on the Add user screen" , groups = "Regression")
 	public static void verifyAddUserPage() {
-		
+
 		Helper.login();
-		
+
 		HomePage home = new HomePage(LocalListeners.getDriver());
 		CommonActions.verifyElementExists(home.getAdminLink(), "Verify Admin link Present on Home page");
 		CommonActions.clickOnElement(home.getAdminLink(), "Click on Admin link");
-		
+
 		AdminPage admin = new AdminPage(LocalListeners.getDriver());
 		CommonActions.clickOnElement(admin.getAddUserButton(), "Click on Add button");
-		
+
 		AddUserPage adduser = new AddUserPage(LocalListeners.getDriver());
 		CommonActions.verifyElementExists(adduser.getAddUserHeader(), "Verify Add user header present on the screen");
 		CommonActions.verifyTextEquals(adduser.getAddUserHeader(), "Add users", "Verify the header text displayed as expected");
@@ -37,33 +37,33 @@ public class TestAddUser {
 		CommonActions.verifyElementExists(adduser.getStatusDropdown(), "Verify Status dropdown present on the screen");
 		CommonActions.verifyElementExists(adduser.getCancelButton(), "Verify Cancel button present on the screen");
 		CommonActions.verifyElementExists(adduser.getSaveButton(), "Verify Save button present on the screen");
-	
+
 		Helper.logout();
 	}
-	
+
 	public static void addNewUser() {
-Helper.login();
-		
+		Helper.login();
+
 		HomePage home = new HomePage(LocalListeners.getDriver());
 		CommonActions.verifyElementExists(home.getAdminLink(), "Verify Admin link Present on Home page");
 		CommonActions.clickOnElement(home.getAdminLink(), "Click on Admin link");
-		
+
 		AdminPage admin = new AdminPage(LocalListeners.getDriver());
 		CommonActions.clickOnElement(admin.getAddUserButton(), "Click on Add button");
-		
+
 		AddUserPage adduser = new AddUserPage(LocalListeners.getDriver());
 		CommonActions.setText(adduser.getEmployeeName(), "a", "Entered the text into employee name textfield");
 		adduser.getEmployeeName().sendKeys(Keys.ENTER);
 		Helper.waitForSeconds(2);
 		adduser.getEmployeeName().sendKeys(Keys.DOWN, Keys.ENTER);
-		
+
 		CommonActions.clickOnElement(adduser.getUserRoleDropdown(), "Clicked on User role dropdown");
 		CommonActions.clickOnElement(adduser.getAddUserDropdownESS(), "Select ESS from the dropdown");
-		
+
 		CommonActions.clickOnElement(adduser.getStatusDropdown(), "Click on Status dropdown");
 		CommonActions.clickOnElement(adduser.getStatusEnabled(), "Select Enabled from Status dropdown");
-		
-		
+
+
 	}
 
 }
