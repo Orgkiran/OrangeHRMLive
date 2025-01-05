@@ -1,4 +1,4 @@
-name: Build with Maven
+name: Run Selenium tests
 on:
   push:
     branches: ["develop"]
@@ -43,12 +43,6 @@ jobs:
       - name: Print Chrome Version
         run: |
           google-chrome --version
-      - name: Install Chrome, Firefox and Git on OS
-        uses: shreyash-Pandey-Katni/Chrome-Firefox-git-install-action@v2
-        with:
-          chrome: true
-          firefox: true
-          git: true
       - name: Download ChromeDriver
         uses: nanasess/setup-chromedriver@v2
         with:
