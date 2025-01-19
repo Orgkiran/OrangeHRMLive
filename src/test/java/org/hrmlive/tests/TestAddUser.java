@@ -27,8 +27,8 @@ public class TestAddUser {
 
 		AddUserPage adduser = new AddUserPage(LocalListeners.getDriver());
 		CommonActions.verifyElementExists(adduser.getAddUserHeader(), "Verify Add user header present on the screen");
-		CommonActions.verifyTextEquals(adduser.getAddUserHeader(), "Add users", "Verify the header text displayed as expected");
-		CommonActions.verifyTextContains(adduser.getAddUserHeader(), "Adds", "Verify the header contains expected String");
+		CommonActions.verifyTextEquals(adduser.getAddUserHeader(), "Add User", "Verify the header text displayed as expected");
+		CommonActions.verifyTextContains(adduser.getAddUserHeader(), "Add", "Verify the header contains expected String");
 		CommonActions.verifyElementExists(adduser.getUserRoleDropdown(), "Verify user role dropdown present on the screen");
 		CommonActions.verifyElementExists(adduser.getEmployeeName(), "Verify Employee name field present on the screen");
 		CommonActions.verifyElementExists(adduser.getUsernametextfield(), "Verify Username text field present on the screen");
@@ -41,6 +41,7 @@ public class TestAddUser {
 		Helper.logout();
 	}
 
+	@Test(description = "Verifying the elements on Add user screen and Adding new user" , groups = "Regression")
 	public static void addNewUser() {
 		Helper.login();
 
@@ -56,14 +57,17 @@ public class TestAddUser {
 		adduser.getEmployeeName().sendKeys(Keys.ENTER);
 		Helper.waitForSeconds(2);
 		adduser.getEmployeeName().sendKeys(Keys.DOWN, Keys.ENTER);
-
 		CommonActions.clickOnElement(adduser.getUserRoleDropdown(), "Clicked on User role dropdown");
 		CommonActions.clickOnElement(adduser.getAddUserDropdownESS(), "Select ESS from the dropdown");
-
 		CommonActions.clickOnElement(adduser.getStatusDropdown(), "Click on Status dropdown");
 		CommonActions.clickOnElement(adduser.getStatusEnabled(), "Select Enabled from Status dropdown");
-
-
+		CommonActions.setText(adduser.getUsernametextfield(), Helper.getRandomFirstName(), "Enter user name");
+		String password = Helper.getRandomPassword();
+		CommonActions.setText(adduser.getPasswordfield(), password, "Enter Password");
+		CommonActions.setText(adduser.getConfirmpasswordfield(), password, "Confirm password");
+		CommonActions.clickOnElement(adduser.getSaveButton(), "Click on Save button");
+		
+		Helper.logout();
 	}
 
 }

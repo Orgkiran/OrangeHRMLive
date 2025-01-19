@@ -20,7 +20,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
@@ -69,20 +71,41 @@ public class LocalListeners implements ITestListener {
 			e.printStackTrace();
 		}
 		String browser = prop.getProperty("browser");
+		boolean isHeadless = prop.getProperty("headless").toLowerCase().equalsIgnoreCase("true");
 
 		if (browser.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
-			ChromeOptions options = new ChromeOptions();
-			options.addArguments("--headless");
-			options.addArguments("--no-sandbox");
-			options.addArguments("--disable-dev-shm-usage");
-			driver = new ChromeDriver(options);
+			if(isHeadless) {
+				ChromeOptions options = new ChromeOptions();
+				options.addArguments("--headless");
+				options.addArguments("--no-sandbox");
+				options.addArguments("--disable-dev-shm-usage");
+				driver = new ChromeDriver(options);
+			} else {
+				driver = new ChromeDriver();
+			}
 		} else if (browser.equalsIgnoreCase("edge")) {
 			WebDriverManager.edgedriver().setup();
-			driver = new EdgeDriver();
+			if(isHeadless) {
+				EdgeOptions options = new EdgeOptions();
+				options.addArguments("--headless");
+				options.addArguments("--no-sandbox");
+				options.addArguments("--disable-dev-shm-usage");
+				driver = new EdgeDriver(options);
+			} else {
+				driver = new EdgeDriver();
+			}
 		} else if (browser.equalsIgnoreCase("firefox")) {
 			WebDriverManager.firefoxdriver().setup();
-			driver = new FirefoxDriver();
+			if(isHeadless) {
+				FirefoxOptions options = new FirefoxOptions();
+				options.addArguments("--headless");
+				options.addArguments("--no-sandbox");
+				options.addArguments("--disable-dev-shm-usage");
+				driver = new FirefoxDriver(options);
+			} else {
+				driver = new FirefoxDriver();
+			}
 		}
 
 		driver.manage().window().maximize();
@@ -108,24 +131,33 @@ public class LocalListeners implements ITestListener {
 		test.log(Status.INFO, "Browser: " + prop.getProperty("browser").toUpperCase() + ", and Screen Size: "
 				+ screenSize.toString());
 		Reporter.log("Test Started: " + result.getName());
+		System.out.print("Test: " + result.getName());
+		
 	}
 
 	public void onTestSuccess(ITestResult result) {
 		test.log(Status.PASS, "Test Pass", MediaEntityBuilder
 				.createScreenCaptureFromBase64String(CommonActions.captureScreenshot(driver)).build());
 		Reporter.log("Test Passed: " + result.getName());
+		System.out.println(" >> Passed");
+		System.out.println();
 	}
 
 	public void onTestFailure(ITestResult result) {
 		Throwable var = result.getThrowable();
 		test.log(Status.FAIL, "STEP FAILED: \n" + var, MediaEntityBuilder
 				.createScreenCaptureFromBase64String(CommonActions.captureScreenshot(driver)).build());
-		Reporter.log("Test Failed: " + result.getName());
+		Reporter.log("Failed: " + result.getName());
+		System.out.println(" >> Test Failed due to: "+ var.getMessage());
+		System.out.println();
+		Helper.logout();
 	}
 
 	public void onTestSkipped(ITestResult result) {
 		test.log(Status.SKIP, "Test Skipped at " + getCurrentDateWithTime());
-		Reporter.log("Test Skipped: " + result.getName());
+		Reporter.log("Skipped: " + result.getName());
+		System.out.println(" >> Test Skipped");
+		System.out.println();
 	}
 
 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
@@ -142,6 +174,7 @@ public class LocalListeners implements ITestListener {
 	}
 
 	public void onFinish(ITestContext context) {
+		System.out.println(">>>>>>>> Execution Completed <<<<<<<<");
 		extent.flush();
 		driver.quit();
 	}
