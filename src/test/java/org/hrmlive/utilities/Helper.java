@@ -1,10 +1,13 @@
 package org.hrmlive.utilities;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 import org.hrmlive.pages.HomePage;
 import org.hrmlive.pages.LoginPage;
 import org.hrmlive.testlisteners.LocalListeners;
+
+import com.github.javafaker.Faker;
 
 public class Helper {
 
@@ -45,6 +48,35 @@ public class Helper {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static String getRandomFirstName() {
+		Faker fake = new Faker();
+		String fname = fake.name().firstName();
+		return fname;
+	}
+	
+	public static String getRandomLastName() {
+		Faker fake = new Faker();
+		String lname = fake.name().lastName();
+		return lname;
+	}
+	
+	public static String getRandomFullName() {
+		Faker fake = new Faker();
+		String fullname = fake.name().fullName();
+		return fullname;
+	}
+	
+	public static String getRandomPhoneNumber() {
+		Faker fake = new Faker();
+		String phoneNumber = "9" + fake.number().digits(9);
+		return phoneNumber;
+	}
+	
+	public static String getRandomPassword() {
+		String password = UUID.randomUUID().toString();
+		return password;
 	}
 
 }

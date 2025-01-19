@@ -15,9 +15,16 @@ public class AdminPage {
 
 	@FindBy(xpath = "//button[text()=' Add ']")
 	private WebElement addUserButton;
+	
+	@FindBy(xpath = "//*[contains(text(), 'Successfully')]")
+	private WebElement successMessage;
 
 	public WebElement getAddUserButton() {
 		return addUserButton;
+	}
+
+	public WebElement getSuccessMessage() {
+		return successMessage;
 	}
 	
 }
