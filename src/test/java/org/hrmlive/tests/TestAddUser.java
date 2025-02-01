@@ -62,6 +62,7 @@ public class TestAddUser {
 		CommonActions.clickOnElement(adduser.getStatusDropdown(), "Click on Status dropdown");
 		CommonActions.clickOnElement(adduser.getStatusEnabled(), "Select Enabled from Status dropdown");
 		CommonActions.setText(adduser.getUsernametextfield(), Helper.getRandomFirstName(), "Enter user name");
+		
 		String password = Helper.getRandomPassword();
 		CommonActions.setText(adduser.getPasswordfield(), password, "Enter Password");
 		CommonActions.setText(adduser.getConfirmpasswordfield(), password, "Confirm password");

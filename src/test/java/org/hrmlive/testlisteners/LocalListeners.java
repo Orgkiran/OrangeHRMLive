@@ -131,15 +131,15 @@ public class LocalListeners implements ITestListener {
 		test.log(Status.INFO, "Browser: " + prop.getProperty("browser").toUpperCase() + ", and Screen Size: "
 				+ screenSize.toString());
 		Reporter.log("Test Started: " + result.getName());
-		System.out.print("Test: " + result.getName());
-		
+		System.out.println("Test: " + result.getName());
+
 	}
 
 	public void onTestSuccess(ITestResult result) {
 		test.log(Status.PASS, "Test Pass", MediaEntityBuilder
 				.createScreenCaptureFromBase64String(CommonActions.captureScreenshot(driver)).build());
 		Reporter.log("Test Passed: " + result.getName());
-		System.out.println(" >> Passed");
+		System.out.println("Result: >> Pass");
 		System.out.println();
 	}
 
@@ -148,15 +148,15 @@ public class LocalListeners implements ITestListener {
 		test.log(Status.FAIL, "STEP FAILED: \n" + var, MediaEntityBuilder
 				.createScreenCaptureFromBase64String(CommonActions.captureScreenshot(driver)).build());
 		Reporter.log("Failed: " + result.getName());
-		System.out.println(" >> Test Failed due to: "+ var.getMessage());
-		System.out.println();
-		Helper.logout();
+			System.out.println("Result: >> Failed due to: \n"+ var.getMessage());
+			System.out.println();
+			Helper.logout();
 	}
 
 	public void onTestSkipped(ITestResult result) {
 		test.log(Status.SKIP, "Test Skipped at " + getCurrentDateWithTime());
 		Reporter.log("Skipped: " + result.getName());
-		System.out.println(" >> Test Skipped");
+		System.out.println("Result: >> Test Skipped");
 		System.out.println();
 	}
 
